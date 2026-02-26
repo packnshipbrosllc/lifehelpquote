@@ -13,16 +13,6 @@ const STEPS = [
 ];
 
 const EXIT_MESSAGES = {
-  age_young: {
-    title: "You're Thinking Ahead",
-    body: "Most people your age don't even consider life insurance — the fact that you're here says a lot. While most policies require you to be 25+, it's never too early to learn. Bookmark this page and come back when you're ready.",
-    type: "soft",
-  },
-  age_over: {
-    title: "We Appreciate You",
-    body: "Coverage options change after 70, but there are still plans designed for you. We'd recommend speaking with a licensed agent who specializes in senior coverage.",
-    type: "soft",
-  },
   health_terminal: {
     title: "We're Here For You",
     body: "We understand this is a difficult time. While traditional coverage may not be available, guaranteed acceptance policies exist with no health questions. A licensed agent can walk you through your options with care.",
@@ -37,11 +27,6 @@ const EXIT_MESSAGES = {
     title: "No Rush — We'll Be Here",
     body: "Smart move doing your research first. We'll keep your info on file and check in when you're closer to making a decision. Knowledge is power.",
     type: "nurture",
-  },
-  budget_low: {
-    title: "Good News",
-    body: "Many term life policies actually start well under $30/month. Rates depend on your age and health. It's worth getting a free quote — you might be surprised.",
-    type: "soft",
   },
 };
 
@@ -370,11 +355,7 @@ export default function LeadForm() {
                 selected={formData.age === o.value}
                 onClick={() => {
                   handleSelect("age", o.value);
-                  setTimeout(() => {
-                    if (o.value === "under_25") goExit("age_young");
-                    else if (o.value === "over_70") goExit("age_over");
-                    else goNext();
-                  }, 250);
+                  setTimeout(() => goNext(), 250);
                 }}
               />
             ))}
@@ -469,10 +450,7 @@ export default function LeadForm() {
                 selected={formData.budget === o.value}
                 onClick={() => {
                   handleSelect("budget", o.value);
-                  setTimeout(() => {
-                    if (o.value === "under_30") goExit("budget_low");
-                    else goNext();
-                  }, 250);
+                  setTimeout(() => goNext(), 250);
                 }}
               />
             ))}
